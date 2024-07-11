@@ -8,6 +8,8 @@ const SlideContent = ({title, text, img}) => {
             alignItems: 'center',
             margin: '4%',
             padding: '2%',
+            minHeight: '70vh',
+            width:'60%'
         }}>
             <Typography variant={'h3'}>
                 {title}

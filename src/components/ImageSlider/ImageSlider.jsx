@@ -1,11 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Button, Icon, Stack, Typography} from "@mui/material";
 import Slide from "./Slide";
 import {content} from "./content";
 
 const ImageSlider = () => {
     const [year, setYear] = useState(2020);
-    const selectedContent = content.find(element=> element.year === year)
+    const [selectedContent, setSelectedContent] = useState(content.find(element=> element.year === year))
+
+    useEffect(() => {
+        setSelectedContent(content.find(element=> element.year === year))
+
+
+    }, [year]);
     return (
         <Stack sx={{
             margin: '12% 0 4% 0',
@@ -14,8 +20,6 @@ const ImageSlider = () => {
         }}>
 
 
-
-            <Slide object={selectedContent} />
             <Box sx={{
                 display:'flex',
                 justifyContent:'space-between',
@@ -27,6 +31,8 @@ const ImageSlider = () => {
                 <Button disabled={year>=2024} onClick={()=>setYear(year+1)}><Icon>arrow_forward</Icon></Button>
 
             </Box>
+
+            <Slide object={selectedContent} />
 
         </Stack>
     );
